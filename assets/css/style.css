@@ -1,0 +1,292 @@
+/* ==========================================================================
+   IDENTIDADE VISUAL - IMERSÃO MAPA DA ALMA
+   Paleta extraída do manual/identidade_visual.png
+   Fontes: Cinzel (Títulos principais), Lato (Corpo do texto e UI)
+   ========================================================================== */
+
+:root {
+  /* Cores de Fundo (Creme quente e celestial) */
+  --bg-cream: #FDFaf1;
+  --bg-cream-alt: #f6efe1;
+  --bg-white: #FFFFFF;
+
+  /* Paleta Dourada */
+  --gold-pale: #eedca4;
+  --gold: #d2a154;
+  --gold-dark: #ba8632;
+  --gold-ink: #9c6c21;
+
+  /* Paleta Terrosa / Textos (Marrom rico e Taupe) */
+  --text-heading: #5a271c; /* Marrom avermelhado escuro */
+  --text-sub: #7b5d4a;     /* Taupe da descrição */
+  --text-ink: #3b2b25;     /* Escuro para leitura longa */
+  --text-muted: #6b5c56;
+  
+  /* Linhas e bordas */
+  --line-color: rgba(210, 161, 84, 0.25);
+
+  /* CTA WhatsApp */
+  --wa: #128C7E;
+  --wa-dark: #0E6F63;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6, .font-cinzel {
+  font-family: 'Cinzel', serif;
+  color: var(--text-heading);
+}
+
+.text-gold { color: var(--gold); }
+.text-gold-dark { color: var(--gold-dark); }
+.text-heading { color: var(--text-heading); }
+.text-sub { color: var(--text-sub); }
+
+/* Fundo Mandala Dinâmico e "Poeira de Luz" */
+.bg-mandala {
+  position: relative;
+}
+.bg-mandala::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url('https://www.transparenttextures.com/patterns/arabesque.png'); /* Placeholder */
+  opacity: 0.05;
+  pointer-events: none;
+}
+.dust-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(1.5px 1.5px at 40px 60px, rgba(210,161,84,0.5), transparent),
+    radial-gradient(1.2px 1.2px at 210px 30px, rgba(90,39,28,0.2), transparent),
+    radial-gradient(1.8px 1.8px at 330px 250px, rgba(210,161,84,0.6), transparent);
+  background-size: 400px 400px;
+  animation: drift 120s linear infinite;
+}
+
+@keyframes drift {
+  from { background-position: 0 0; }
+  to { background-position: 400px -400px; }
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line-color);
+  box-shadow: 0 10px 30px rgba(90, 39, 28, 0.05);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(90, 39, 28, 0.1);
+  border-color: rgba(210, 161, 84, 0.6);
+}
+.glass-card:hover::before { opacity: 1; }
+
+/* Facilitadoras - Breakout Card Effect */
+.breakout-card {
+  margin-top: 80px; /* Espaço para a foto vazar */
+  overflow: visible; /* Permite que a foto saia do card */
+  padding-top: 140px; /* Empurra o conteúdo pra baixo */
+}
+
+.breakout-img-wrapper {
+  position: absolute;
+  top: -90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 250px;
+  z-index: 10;
+}
+
+.breakout-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  /* Gradiente fade out na parte de baixo da foto */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+/* Call to Action Buttons (Dourado) */
+.btn-cta-gold {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-heading);
+  background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+  padding: 18px 36px;
+  border-radius: 50px;
+  border: 1px solid rgba(156, 108, 33, 0.3);
+  box-shadow: 0 10px 25px rgba(210, 161, 84, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.btn-cta-gold::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  transform: rotate(30deg);
+  animation: shine 4s infinite;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.btn-cta-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(210, 161, 84, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  color: var(--text-heading);
+}
+
+/* WhatsApp Floating Button */
+.wa-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  height: 60px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(135deg, #25D366, var(--wa));
+  box-shadow: 0 10px 25px rgba(18, 140, 126, 0.4);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.wa-float-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.wa-float-icon svg { width: 32px; height: 32px; fill: white; }
+
+.wa-float-text {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  max-width: 0;
+  opacity: 0;
+  transition: max-width 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.wa-float:hover, .wa-float:focus-visible {
+  box-shadow: 0 12px 30px rgba(18, 140, 126, 0.5);
+  transform: translateY(-3px);
+  color: white;
+}
+
+.wa-float:hover .wa-float-text, .wa-float:focus-visible .wa-float-text {
+  max-width: 250px;
+  opacity: 1;
+  padding-right: 24px;
+}
+
+@media (hover: none) {
+  .wa-float .wa-float-text { max-width: 250px; opacity: 1; padding-right: 24px; }
+}
+
+/* Divisor Decorativo */
+.divider {
+  display: flex; align-items: center; justify-content: center; gap: 15px; margin: 30px auto; max-width: 300px;
+}
+.divider::before, .divider::after {
+  content: ''; height: 1px; flex: 1; background: linear-gradient(90deg, transparent, var(--gold));
+}
+.divider::after { background: linear-gradient(270deg, transparent, var(--gold)); }
+
+/* Específicos para Imagens */
+.img-mask-blob {
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+  34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+  67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+  100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+}
+
+/* Oferta Destaque */
+.offer-box {
+  background: linear-gradient(165deg, var(--bg-white) 0%, var(--bg-cream-alt) 100%);
+  border: 1px solid var(--gold); border-radius: 24px; position: relative;
+  box-shadow: 0 20px 50px rgba(90, 39, 28, 0.08);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--text-heading), var(--gold-dark));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* FAQ Accordion */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, opacity 0.4s ease;
+  opacity: 0;
+}
+.faq-toggle:checked ~ .faq-content {
+  max-height: 600px;
+  opacity: 1;
+}
+.faq-toggle:checked ~ label .faq-icon {
+  transform: rotate(45deg);
+}
